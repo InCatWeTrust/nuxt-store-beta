@@ -1,0 +1,523 @@
+@import 'reset.scss';
+@import '_variables.scss';
+
+* {
+  box-sizing: border-box;
+  font-size: 16px;
+  line-height: 1;
+  color: $black;
+}
+
+body,
+html {
+  font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,Liberation Sans,sans-serif;
+}
+
+body {
+  background-color: $documentBackground;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:focus {
+  outline: none;
+}
+
+input {
+  margin: 0;
+  padding-left: 15px;
+  border: 1px solid $brandColor;
+}
+
+button {
+  padding: 0;
+}
+
+button:disabled {
+  background: $disabled;
+  cursor: not-allowed;
+}
+
+textarea {
+  resize: none;
+}
+
+.mb30 {
+  margin-bottom: 30px !important;
+}
+
+.mb40 {
+  margin-bottom: 40px !important;
+}
+
+.block {
+  display: block;
+}
+
+.container {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
+.lines-3 {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.added {
+  position: relative;
+
+  svg {
+    fill: $blue !important;
+  }
+}
+
+.added::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: -2px;
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  background-color: $error;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.top-amount {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px 5px;
+  background-color: $brandColor;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+.logo-link {
+  display: block;
+  min-width: 70px;
+  width: 70px;
+  height: 70px;
+  margin-right: 35px;
+  background-color: $brandColor;
+  border-radius: 2px;
+}
+
+.old-price {
+  position: relative;
+}
+
+.old-price::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  height: 1px;
+  background-color: $darkGrey;
+  transform: translate(-50%, -50%) rotate(-20deg);
+}
+
+.dotted {
+  background-image: -webkit-repeating-radial-gradient(circle, rgba(0,0,0,.2), rgba(0,0,0,.2) 1px, transparent 1px, transparent 100%);
+  background-image: -moz-repeating-radial-gradient(circle, rgba(0,0,0,.2), rgba(0,0,0,.2) 1px, transparent 1px, transparent 100%);
+  background-image: -ms-repeating-radial-gradient(circle, rgba(0,0,0,.2), rgba(0,0,0,.2) 1px, transparent 1px, transparent 100%);
+  background-image: repeating-radial-gradient(circle, rgba(0,0,0,.2), rgba(0,0,0,.2) 1px, transparent 1px, transparent 100%);
+  -webkit-background-size: 3px 3px;
+  -moz-background-size: 3px 3px;
+  background-size: 3px 3px;
+  width:100%;
+  height: 3px;
+}
+
+._cover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $documentBackground;
+  transition: opacity 50ms linear;
+  opacity: 0;
+  z-index: 100;
+}
+
+._cover_show {
+  opacity: 1;
+}
+
+/* Checkbox */
+
+.check {
+  position: relative;
+}
+
+.check input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  transition-property: transform, border-color;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+
+.check input + label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: inline-flex;
+  border: 1px solid $greyText;
+  border-radius: 5px;
+  user-select: none;
+  overflow: hidden;
+  transition-property: transform, border-color, color;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+
+.check input + label::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 75%;
+  height: 75%;
+  transform: translate(-50%, -50%) scale(0);
+  top: 50%;
+  left: 50%;
+  border-radius: 3px;
+  background-color: $brandColor;
+  transition-property: transform, border-color;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+
+.check input:checked + label::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+// Кастомные чекбоксы
+
+.checkbox-container {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+}
+
+.checkbox input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  transition-property: transform, border-color;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+  pointer-events: none;
+}
+
+.checkbox input + label {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: inline-flex;
+  border: 1px solid $grey;
+  border-radius: 5px;
+  user-select: none;
+  overflow: hidden;
+  cursor: pointer;
+  transition-property: transform, border-color;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+  pointer-events: none;
+}
+
+.checkbox input + label::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+    height: 100%;
+  transform: translate(-50%, -50%) scale(0);
+  top: 50%;
+  left: 50%;
+  border-radius: 3px;
+  background: $brandGradient;
+  transition-property: transform, border-color;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+
+.checkbox-container input:checked + label::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.checkbox-container:hover span {
+  color: $black;
+}
+
+// стили при наведении курсора на checkbox
+.checkbox-container:hover input:not(:disabled):not(:checked) + label {
+  border-color: $black;
+}
+// стили для активного состояния чекбокса (при нажатии на него)
+.checkbox-container:active input:not(:disabled) + label::before {
+  transform: translate(-50%, -50%) scale(0.3);
+}
+// стили для чекбокса, находящегося в состоянии disabled
+.checkbox-container input:disabled + label {
+  background-color: $lightGreyText;
+}
+
+// Tooltips
+
+.tooltip {
+  display: block !important;
+  z-index: 10000;
+
+  .tooltip-inner {
+    font-weight: 500;
+    background: $tooltipGradient;
+    color: $white;
+    border-radius: 16px;
+    border: 1px solid $white;
+    padding: 8px 16px 8px;
+  }
+
+  .tooltip-arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    position: absolute;
+    margin: 5px;
+    border-color: $black;
+    z-index: 1;
+  }
+
+  &[x-placement^="top"] {
+    margin-bottom: 5px;
+
+    .tooltip-inner {
+      animation: tooltip-up 600ms ease infinite alternate;
+    }
+
+    .tooltip-arrow {
+      border-width: 5px 5px 0 5px;
+      border-left-color: transparent !important;
+      border-right-color: transparent !important;
+      border-bottom-color: transparent !important;
+      bottom: -5px;
+      left: calc(50% - 5px);
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &[x-placement^="bottom"] {
+    margin-top: 5px;
+
+    .tooltip-inner {
+      animation: tooltip-down 600ms ease infinite alternate;
+    }
+
+    .tooltip-arrow {
+      border-width: 0 5px 5px 5px;
+      border-left-color: transparent !important;
+      border-right-color: transparent !important;
+      border-top-color: transparent !important;
+      top: -5px;
+      left: calc(50% - 5px);
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &[x-placement^="right"] {
+    margin-left: 5px;
+
+    .tooltip-inner {
+      animation: tooltip-right 600ms ease infinite alternate;
+    }
+
+    .tooltip-arrow {
+      border-width: 5px 5px 5px 0;
+      border-left-color: transparent !important;
+      border-top-color: transparent !important;
+      border-bottom-color: transparent !important;
+      left: -5px;
+      top: calc(50% - 5px);
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  &[x-placement^="left"] {
+    margin-right: 5px;
+
+    .tooltip-inner {
+      animation: tooltip-left 600ms ease infinite alternate;
+    }
+
+    .tooltip-arrow {
+      border-width: 5px 0 5px 5px;
+      border-top-color: transparent !important;
+      border-right-color: transparent !important;
+      border-bottom-color: transparent !important;
+      right: -5px;
+      top: calc(50% - 5px);
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  &[aria-hidden='true'] {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .15s, visibility .15s;
+  }
+
+  &[aria-hidden='false'] {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity .15s;
+  }
+}
+
+@keyframes tooltip-up {
+  0% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes tooltip-down {
+  0% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes tooltip-right {
+  0% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes tooltip-left {
+  0% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+// Notifications
+
+.vue-notification-group {
+  width: 380px !important;
+  top: 55px !important;
+  right: 40px !important;
+}
+
+.vue-notification-wrapper {
+  overflow: unset !important;
+}
+
+.shop-notifications {
+  // styling
+  margin: 0 5px 5px;
+  padding: 10px;
+  font-size: 14px;
+  color: $white;
+  border-radius: 5px;
+
+  // default (blue)
+  background: $white;
+  border: 2px solid $lightGrey;
+  border-left: 5px solid $defaultBlue;
+  box-shadow: -5px 10px 15px $grey;
+
+  .notification-title {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: $black;
+  }
+
+  .notification-content {
+    font-size: 16px;
+    line-height: 1.2;
+    color: $black;
+  }
+
+  // types (green, amber, red)
+  &.success {
+    border-left-color: $success;
+  }
+
+  &.warn {
+    border-left-color: $success;
+  }
+
+  &.error {
+    border-left-color: $success;
+  }
+}
+
+@media (max-width: 1024px) {
+
+  .container {
+      padding: 0 15px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .container {
+      padding: 0 10px;
+  }
+
+  .vue-notification-group {
+    width: 100% !important;
+    top: unset !important;
+    right: unset !important;
+    bottom: 10px !important;
+    left: 0 !important;
+  }
+
+  .shop-notifications {
+    box-shadow: unset;
+  }
+
+}
